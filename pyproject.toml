@@ -1,0 +1,17 @@
+[project]
+name = "FastEmbody-framework"
+version = "0.1.0"
+description = "Self-contained PPO training framework for a toy Unitree Go2 environment"
+requires-python = ">=3.10"
+readme = "README.md"
+authors = [{ name = "Codex" }]
+dependencies = [
+  "torch",
+]
+
+[project.optional-dependencies]
+docs = ["pyyaml"]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"

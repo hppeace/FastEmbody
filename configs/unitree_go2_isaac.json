@@ -1,0 +1,51 @@
+{
+  "env": {
+    "name": "go2",
+    "builder": "unitree",
+    "params": {
+      "runtime": {
+        "num_envs": 4096,
+        "headless": true,
+        "physics_engine": "physx",
+        "sim_device": "cuda:0",
+        "rl_device": "cuda:0",
+        "use_gpu_pipeline": true,
+        "use_gpu": true,
+        "seed": 1
+      },
+      "env_cfg_overrides": {
+        "terrain": {
+          "curriculum": true
+        }
+      },
+      "train_cfg_overrides": {
+        "runner": {
+          "max_iterations": 2000,
+          "experiment_name": "unitree_go2_isaac",
+          "run_name": "default"
+        }
+      }
+    }
+  },
+  "algorithm": {
+    "name": "go2_ppo",
+    "builder": "ppo",
+    "params": {
+      "device": "cuda:0",
+      "rollout_length": 24,
+      "learning_rate": 0.0003,
+      "num_learning_epochs": 5,
+      "num_mini_batches": 4
+    }
+  },
+  "trainer": {
+    "name": "on_policy",
+    "params": {
+      "num_iterations": 2000
+    }
+  },
+  "logging": {
+    "log_dir": "./logs",
+    "interval": 10
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "env": {
+    "name": "go2",
+    "builder": "go2",
+    "params": {
+      "runtime": {
+        "num_envs": 512,
+        "device": "cpu",
+        "episode_length": 400,
+        "seed": 7
+      },
+      "dt": 0.02,
+      "command_interval": 40,
+      "command_scale": 1.0
+    }
+  },
+  "algorithm": {
+    "name": "go2_distill",
+    "builder": "distillation",
+    "params": {
+      "device": "cpu",
+      "rollout_length": 32,
+      "batch_size": 1024,
+      "student_epochs": 3,
+      "student_hidden_sizes": [128, 128],
+      "teacher_hidden_sizes": [256, 256],
+      "learning_rate": 0.0003,
+      "clip_grad_norm": 1.0,
+      "loss_type": "mse",
+      "temperature": 1.0,
+      "output_activation": "tanh"
+    }
+  },
+  "trainer": {
+    "name": "on_policy",
+    "params": {
+      "num_iterations": 300
+    }
+  },
+  "logging": {
+    "log_dir": "./logs",
+    "interval": 10
+  }
+}

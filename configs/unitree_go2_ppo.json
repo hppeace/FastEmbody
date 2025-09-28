@@ -1,0 +1,38 @@
+{
+  "env": {
+    "name": "go2",
+    "builder": "go2",
+    "params": {
+      "runtime": {
+        "num_envs": 1024,
+        "device": "cpu",
+        "episode_length": 400,
+        "seed": 42
+      },
+      "dt": 0.02,
+      "command_interval": 40,
+      "command_scale": 1.0
+    }
+  },
+  "algorithm": {
+    "name": "go2_ppo",
+    "builder": "ppo",
+    "params": {
+      "device": "cpu",
+      "rollout_length": 64,
+      "learning_rate": 0.0003,
+      "num_learning_epochs": 4,
+      "num_mini_batches": 4
+    }
+  },
+  "trainer": {
+    "name": "on_policy",
+    "params": {
+      "num_iterations": 500
+    }
+  },
+  "logging": {
+    "log_dir": "./logs",
+    "interval": 10
+  }
+}
